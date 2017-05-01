@@ -23,12 +23,11 @@ app.listen(port, function () {
 });
 
 app.get('/get_all_tasks', function (request, response) {
-    var queryString = "select * from todo";
+    var queryString = "select * from todo where done=" + request.query.done;
     var query = client.query(queryString);
     var taskHTML = '';
 
     query.on('row', function (row) {
-        console.log("GOT HERE");
         console.log(row);
         taskHTML += '<li id="' + row.id + '"><span class="done">%</span>';
         taskHTML += '<span class="edit">+</span>';

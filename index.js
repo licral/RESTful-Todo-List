@@ -7,9 +7,8 @@ var app = express();
 var port = 3000;
 
 var pg = require('pg');
-var connectionString = process.env.DATABASE_URL;
 
-var client = new pg.Client(connectionString);
+var client = new pg.Client(process.env.DATABASE_URL);
 client.connect();
 
 app.use(express.static(__dirname + '/public'));

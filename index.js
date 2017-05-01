@@ -54,9 +54,9 @@ app.post('/add_task', function (request, response) {
         var taskHTML = '<li id="' + (row.id + 1) + '"><span class="done">%</span>';
         taskHTML += '<span class="edit">+</span>';
         taskHTML += '<span class="delete">x</span>';
-        taskHTML += '<span class="task">' + task + '</span></li>';
+        taskHTML += '<span class="task">' + request.query.task + '</span></li>';
 
-        addTask(task);
+        addTask(request.query.task);
 
         response.send(taskHTML);
     });

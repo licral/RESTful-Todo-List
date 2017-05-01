@@ -18,7 +18,7 @@ $(document).ready(function (e) {
             "Add task": function () {
                 $.ajax({
                     type: 'POST',
-                    url: 'http://localhost:3000/add_task?task=' + $('#task').val(),
+                    url: 'https://vast-cove-47966.herokuapp.com/add_task?task=' + $('#task').val(),
                     dataType: 'html',
                     success: function(data){
                         addTask(data, '#new-todo');
@@ -38,7 +38,7 @@ $(document).ready(function (e) {
 
         $.ajax({
             type: 'POST',
-            url: 'http://localhost:3000/complete_task?id=' + task,
+            url: 'https://vast-cove-47966.herokuapp.com/complete_task?id=' + task,
             success: function(){
                 $taskItem.slideUp(250, function () {
                     var $this = $(this);
@@ -72,7 +72,7 @@ $(document).ready(function (e) {
                 
                 $.ajax({
                     type: 'POST',
-                    url: 'http://localhost:3000/edit_task?id=' + taskId + '&task=' + newItem,
+                    url: 'https://vast-cove-47966.herokuapp.com/edit_task?id=' + taskId + '&task=' + newItem,
                     success: function(){
                         editTask(taskItem, newItem, '#edit-todo');
                     }
@@ -112,7 +112,7 @@ $(document).ready(function (e) {
                 var taskId = $(this).data('taskId');
                 $.ajax({
                     type: 'POST',
-                    url: 'http://localhost:3000/delete_task?id=' + taskId,
+                    url: 'https://vast-cove-47966.herokuapp.com/delete_task?id=' + taskId,
                     success: function(){
                         deleteTask(taskItem, '#confirm-delete');
                     }
@@ -148,7 +148,7 @@ $(document).ready(function (e) {
     function loadTodoTasks(){
         $.ajax({
             type: 'GET',
-            url: 'http://localhost:3000/get_all_tasks?done=false',
+            url: 'https://vast-cove-47966.herokuapp.com/get_all_tasks?done=false',
             dataType: 'html',
             success: function(data){
                 $('#todo-list').html(data);
@@ -159,7 +159,7 @@ $(document).ready(function (e) {
     function loadCompletedTasks(){
         $.ajax({
             type: 'GET',
-            url: 'http://localhost:3000/get_all_tasks?done=true',
+            url: 'https://vast-cove-47966.herokuapp.com/get_all_tasks?done=true',
             dataType: 'html',
             success: function(data){
                 $('#completed-list').html(data);
@@ -183,7 +183,7 @@ $(document).ready(function (e) {
         });
         $.ajax({
             type: 'POST',
-            url: 'http://localhost:3000/update_list',
+            url: 'https://vast-cove-47966.herokuapp.com/update_list',
             contentType: 'application/json',
             data: JSON.stringify({
                 allTasks: allTasks

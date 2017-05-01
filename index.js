@@ -23,7 +23,8 @@ app.listen(port, function () {
 });
 
 app.get('/get_all_tasks', function (request, response) {
-    var queryString = "select * from todo where done=false";
+    console.log(request.query.done);
+    var queryString = "select * from todo where done=" + request.query.done;
     var query = client.query(queryString);
     var taskHTML = '';
 

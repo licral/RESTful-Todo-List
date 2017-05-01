@@ -7,7 +7,7 @@ var app = express();
 var port = 3000;
 
 var pg = require('pg');
-var connectionString = 'postgres://liaobonn:300315201@depot:5432/liaobonn_jdbc';
+var connectionString = process.env.DATABASE_URL;
 
 var client = new pg.Client(connectionString);
 client.connect();

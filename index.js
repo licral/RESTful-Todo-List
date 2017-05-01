@@ -23,7 +23,6 @@ app.listen(port, function () {
 });
 
 app.get('/get_all_tasks', function (request, response) {
-    console.log(request.url);
     var queryString = "select * from todo where done=" + request.query.done + " order by id";
     var query = client.query(queryString);
     var taskHTML = '';
@@ -36,6 +35,7 @@ app.get('/get_all_tasks', function (request, response) {
     });
 
     query.on('error', function (err) {
+        console.log("Got an error");
         console.log(err);
     });
 

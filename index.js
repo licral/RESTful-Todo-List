@@ -23,7 +23,7 @@ app.listen(port, function () {
 });
 
 app.get('/get_all_tasks', function (request, response) {
-    if(request.query.done = undefined){
+    if(request.query.done == undefined){
         res.sendStatus(400);
     }
     

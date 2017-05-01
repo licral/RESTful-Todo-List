@@ -23,7 +23,6 @@ app.listen(port, function () {
 });
 
 app.get('/get_all_tasks', function (request, response) {
-    console.log(request.query.done);
     if(request.query.done = undefined){
         res.sendStatus(400);
     }
@@ -33,6 +32,7 @@ app.get('/get_all_tasks', function (request, response) {
     var taskHTML = '';
 
     query.on('row', function (row) {
+        console.log(row);
         taskHTML += '<li id="' + row.id + '"><span class="done">%</span>';
         taskHTML += '<span class="edit">+</span>';
         taskHTML += '<span class="delete">x</span>';

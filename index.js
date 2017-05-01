@@ -28,6 +28,7 @@ app.get('/get_all_tasks', function (request, response) {
     var taskHTML = '';
 
     query.on('row', function (row) {
+        console.log(row);
         taskHTML += '<li id="' + row.id + '"><span class="done">%</span>';
         taskHTML += '<span class="edit">+</span>';
         taskHTML += '<span class="delete">x</span>';
@@ -35,7 +36,6 @@ app.get('/get_all_tasks', function (request, response) {
     });
 
     query.on('error', function (err) {
-        console.log("Got an error");
         console.log(err);
     });
 

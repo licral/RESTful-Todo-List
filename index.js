@@ -23,6 +23,10 @@ app.listen(port, function () {
 });
 
 app.get('/get_all_tasks', function (request, response) {
+    if(request.query.done = undefined){
+        res.sendStatus(400);
+    }
+    
     var queryString = "select * from todo where done=" + request.query.done;
     var query = client.query(queryString);
     var taskHTML = '';

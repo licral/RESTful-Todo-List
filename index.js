@@ -16,8 +16,7 @@ app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.json());
 
 app.get('/', function (req, res) {
-    // res.sendFile(__dirname + '/index.html');
-    res.send("Hello World");
+    res.sendFile(__dirname + '/index.html');
 });
 
 app.listen(port, function () {

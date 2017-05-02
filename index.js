@@ -79,7 +79,7 @@ app.put('/complete_task', function (request, response) {
     });
 });
 
-app.post('/edit_task', function (request, response) {
+app.put('/edit_task', function (request, response) {
     if(request.body.task == undefined){
         response.sendStatus(400);
     }
@@ -98,7 +98,7 @@ app.post('/edit_task', function (request, response) {
     });
 });
 
-app.post('/delete_task', function (request, response) {
+app.delete('/delete_task', function (request, response) {
     var queryString = "delete from todo where id=" + request.body.id;
     var query = client.query(queryString);
 
@@ -113,7 +113,7 @@ app.post('/delete_task', function (request, response) {
     });
 });
 
-app.post('/update_list', function (request, response) {
+app.put('/update_list', function (request, response) {
     var allTasks = request.body.allTasks;
     if(allTasks == undefined){
         response.sendStatus(400);

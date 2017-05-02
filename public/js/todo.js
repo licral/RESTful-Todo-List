@@ -79,7 +79,7 @@ $(document).ready(function (e) {
                 var taskId = $(this).data('taskId');
                 
                 $.ajax({
-                    type: 'POST',
+                    type: 'PUT',
                     url: 'https://vast-cove-47966.herokuapp.com/edit_task',
                     contentType: 'application/json',
                     data: JSON.stringify({
@@ -125,7 +125,7 @@ $(document).ready(function (e) {
                 var taskItem = $(this).data('taskItem');
                 var taskId = $(this).data('taskId');
                 $.ajax({
-                    type: 'POST',
+                    type: 'DELETE',
                     url: 'https://vast-cove-47966.herokuapp.com/delete_task',
                     contentType: 'application/json',
                     data: JSON.stringify({
@@ -202,7 +202,7 @@ $(document).ready(function (e) {
             });
         });
         $.ajax({
-            type: 'POST',
+            type: 'PUT',
             url: 'https://vast-cove-47966.herokuapp.com/update_list',
             contentType: 'application/json',
             data: JSON.stringify({

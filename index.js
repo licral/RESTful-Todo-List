@@ -122,6 +122,10 @@ app.post('/update_list', function (request, response) {
     var error = false;
 
     for(var i = 0; i < allTasks.length; i++){
+        if(error){
+            break;
+        }
+        
         var task = allTasks[i];
         var queryString = "update todo set task='" + task.task + "', done='" + task.done + "' where id = " + task.id;
         var query = client.query(queryString);
@@ -129,11 +133,10 @@ app.post('/update_list', function (request, response) {
         query.on('error', function (err) {
             console.log(err);
             error = true;
-            break;
         });
     }
 
-    if(error == false){
+    if(!error){
         response.sendStatus(200);
     } else {
         response.sendStatus(400);

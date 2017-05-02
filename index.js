@@ -119,6 +119,8 @@ app.put('/update_list', function (request, response) {
         response.sendStatus(400);
     }
 
+    var error = false;
+
     for(var i = 0; i < allTasks.length; i++){
         var task = allTasks[i];
         var queryString = "update todo set task='" + task.task + "', done='" + task.done + "' where id = " + task.id;
@@ -126,10 +128,16 @@ app.put('/update_list', function (request, response) {
 
         query.on('error', function (err) {
             console.log(err);
-            response.sendStatus(400);
+            error = true;
+        });
+
+        query.on('end', function(){
+            if(error){
+                response.sendStatus(400);
+            }
         });
     }
-    
+
     response.sendStatus(200);
 });
 

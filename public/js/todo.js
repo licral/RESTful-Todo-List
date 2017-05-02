@@ -88,6 +88,7 @@ $(document).ready(function (e) {
                     }),
                     success: function(){
                         editTask(taskItem, newItem, '#edit-todo');
+                        updateList();
                     }
                 });
             },

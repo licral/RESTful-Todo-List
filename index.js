@@ -119,8 +119,6 @@ app.post('/update_list', function (request, response) {
         response.sendStatus(400);
     }
 
-    var error = false;
-
     for(var i = 0; i < allTasks.length; i++){
         if(error){
             break;
@@ -132,15 +130,11 @@ app.post('/update_list', function (request, response) {
 
         query.on('error', function (err) {
             console.log(err);
-            error = true;
+            response.sendStatus(400);
         });
     }
-
-    if(!error){
-        response.sendStatus(200);
-    } else {
-        response.sendStatus(400);
-    }
+    
+    response.sendStatus(200);
 });
 
 function addTask(task, response) {

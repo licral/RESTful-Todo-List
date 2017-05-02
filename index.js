@@ -115,6 +115,9 @@ app.post('/delete_task', function (request, response) {
 
 app.post('/update_list', function (request, response) {
     var allTasks = request.body.allTasks;
+    if(allTasks == undefined){
+        response.sendStatus(400);
+    }
 
     allTasks.forEach(function (task) {
         var queryString = "update todo set task='" + task.task + "', done='" + task.done + "' where id = " + task.id;

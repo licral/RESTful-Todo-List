@@ -128,6 +128,8 @@ app.post('/update_list', function (request, response) {
             response.sendStatus(400);
         });
     });
+    
+    response.send(200);
 });
 
 function addTask(task, response) {

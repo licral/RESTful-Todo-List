@@ -80,7 +80,12 @@ $(document).ready(function (e) {
                 
                 $.ajax({
                     type: 'POST',
-                    url: 'https://vast-cove-47966.herokuapp.com/edit_task?id=' + taskId + '&task=' + newItem,
+                    url: 'https://vast-cove-47966.herokuapp.com/edit_task',
+                    contentType: 'application/json',
+                    data: JSON.stringify({
+                        id: taskId,
+                        task: newItem
+                    }),
                     success: function(){
                         editTask(taskItem, newItem, '#edit-todo');
                     }

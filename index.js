@@ -80,7 +80,7 @@ app.post('/complete_task', function (request, response) {
 });
 
 app.post('/edit_task', function (request, response) {
-    var queryString = "update todo set task='" + request.query.task + "' where id = " + request.query.id;
+    var queryString = "update todo set task='" + request.body.task + "' where id = " + request.body.id;
     var query = client.query(queryString);
 
     query.on('end', function () {

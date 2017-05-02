@@ -132,11 +132,10 @@ app.post('/update_list', function (request, response) {
                 throw 400;
             });
         });
-    } catch (error) {
+        response.send(200);
+    } catch(error) {
         response.sendStatus(400);
     }
-    
-    response.send(200);
 });
 
 function addTask(task, response) {

@@ -47,6 +47,10 @@ app.get('/get_all_tasks', function (request, response) {
 });
 
 app.post('/add_task', function (request, response) {
+    if(request.body.task == undefined){
+        response.sendStatus(400);
+    }
+    
     var queryString = "insert into todo (task, done) values ('" + request.body.task + "', false)";
     var query = client.query(queryString);
 

@@ -8,7 +8,7 @@ var port = process.env.PORT || 3000;
 
 var pg = require('pg');
 
-var client = new pg.Client(process.env.DATABASE_URL);
+var client = new pg.Client(process.env.DATABASE_URL || 'postgres://liaobonn:300315201@depot:5432/liaobonn_jdbc');
 client.connect();
 
 app.use(express.static(__dirname + '/public'));
@@ -19,7 +19,7 @@ app.get('/', function (req, res) {
 });
 
 app.listen(port, function () {
-    console.log('Listening on port 3000');
+    console.log('Listening on port ' + port);
 });
 
 app.get('/get_all_tasks', function (request, response) {
@@ -112,6 +112,7 @@ app.post('/update_list', function (request, response) {
 
     query.on('end', function () {
         allTasks.forEach(function (task) {
+            console.log(task.id);
             client.query("insert into todo (task, done) values ('" + task.task + "', " + task.done + ")");
         })
     });

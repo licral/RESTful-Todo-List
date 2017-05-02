@@ -172,11 +172,13 @@ $(document).ready(function (e) {
         var $todoList = $('.sortlist li');
         $todoList.each(function(){
             var task = $(this).children('.task').text();
+            var id = $(this).attr('id');
             var done = false;
             if($(this).parent('ul').attr('id') == "completed-list"){
                 done = true;
             }
             allTasks.push({
+                id: id,
                 task: task,
                 done: done
             });

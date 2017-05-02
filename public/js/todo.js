@@ -18,8 +18,11 @@ $(document).ready(function (e) {
             "Add task": function () {
                 $.ajax({
                     type: 'POST',
-                    url: 'https://vast-cove-47966.herokuapp.com/add_task?task=' + $('#task').val(),
+                    url: 'https://vast-cove-47966.herokuapp.com/add_task',
                     dataType: 'html',
+                    data: JSON.stringify({
+                        task: $('#task').val()
+                    }),
                     success: function(data){
                         addTask(data, '#new-todo');
                         updateList();

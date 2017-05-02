@@ -118,6 +118,9 @@ app.put('/update_list', function (request, response) {
     if(allTasks == undefined){
         response.sendStatus(400);
     }
+    if(allTasks.length == 0){
+        response.sendStatus(200);
+    }
 
     var query;
 

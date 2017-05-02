@@ -118,14 +118,8 @@ app.post('/update_list', function (request, response) {
     if(allTasks == undefined){
         response.sendStatus(400);
     }
-    
-    var error = false;
 
     allTasks.forEach(function (task) {
-        if(error == true){
-            response.sendStatus(400);    
-        }
-        
         console.log(task.task);
         console.log(task.done);
 
@@ -134,7 +128,8 @@ app.post('/update_list', function (request, response) {
 
         query.on('error', function (err) {
             console.log(err);
-            error = true;
+            response.sendStatus(400);
+            return;
         });
     });
     

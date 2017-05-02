@@ -47,23 +47,18 @@ app.get('/get_all_tasks', function (request, response) {
 });
 
 app.post('/add_task', function (request, response) {
-    var queryString = "select nextval(pg_get_serial_sequence('todo', 'id'))";
+    var queryString = "select lastval()";
     var query = client.query(queryString);
 
     query.on('row', function (id) {
-        console.log(id.nextval);
-        // var taskHTML = '<li id="' + (row.id + 1) + '"><span class="done">%</span>';
-        // taskHTML += '<span class="edit">+</span>';
-        // taskHTML += '<span class="delete">x</span>';
-        // taskHTML += '<span class="task">' + request.query.task + '</span></li>';
-        //
-        // addTask(request.query.task);
-        //
-        // response.send(taskHTML);
-    });
-    
-    query.on('end', function () {
-        
+        var taskHTML = '<li id="' + (id.lastval + 1) + '"><span class="done">%</span>';
+        taskHTML += '<span class="edit">+</span>';
+        taskHTML += '<span class="delete">x</span>';
+        taskHTML += '<span class="task">' + request.query.task + '</span></li>';
+
+        addTask(request.query.task);
+
+        response.send(taskHTML);
     });
 
     query.on('error', function (err) {

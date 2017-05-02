@@ -118,6 +118,8 @@ app.post('/update_list', function (request, response) {
     if(allTasks == undefined){
         response.sendStatus(400);
     }
+    
+    console.log(allTasks[0]);
 
     allTasks.forEach(function (task) {
         console.log(task.task);

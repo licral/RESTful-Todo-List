@@ -51,7 +51,7 @@ app.post('/add_task', function (request, response) {
     var query = client.query(queryString);
 
     query.on('row', function (id) {
-        console.log(id);
+        console.log(id.nextval);
         // var taskHTML = '<li id="' + (row.id + 1) + '"><span class="done">%</span>';
         // taskHTML += '<span class="edit">+</span>';
         // taskHTML += '<span class="delete">x</span>';

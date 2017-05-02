@@ -47,18 +47,12 @@ app.get('/get_all_tasks', function (request, response) {
 });
 
 app.post('/add_task', function (request, response) {
-    var queryString = "select lastval()";
+    var queryString = "insert into todo (task, done) values ('" + request.query.task + "', false)";
     var query = client.query(queryString);
 
-    query.on('row', function (id) {
-        var taskHTML = '<li id="' + (id.lastval + 1) + '"><span class="done">%</span>';
-        taskHTML += '<span class="edit">+</span>';
-        taskHTML += '<span class="delete">x</span>';
-        taskHTML += '<span class="task">' + request.query.task + '</span></li>';
-
-        addTask(request.query.task);
-
-        response.send(taskHTML);
+    query.on('end', function () {
+        console.log("Task has been added");
+        addTask(request.query.task, response);
     });
 
     query.on('error', function (err) {
@@ -128,12 +122,18 @@ app.post('/update_list', function (request, response) {
     });
 });
 
-function addTask(task) {
-    var queryString = "insert into todo (task, done) values ('" + task + "', false)";
+function addTask(task, response) {
+    var queryString = "select lastval()";
     var query = client.query(queryString);
 
-    query.on('end', function () {
-        console.log("Task has been added");
+    query.on('row', function (id) {
+        var taskHTML = '<li id="' + (id.lastval) + '"><span class="done">%</span>';
+        taskHTML += '<span class="edit">+</span>';
+        taskHTML += '<span class="delete">x</span>';
+        taskHTML += '<span class="task">' + task + '</span></li>';
+
+
+        response.send(taskHTML);
     });
 
     query.on('error', function (err) {

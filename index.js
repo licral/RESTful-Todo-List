@@ -119,18 +119,22 @@ app.post('/update_list', function (request, response) {
         response.sendStatus(400);
     }
 
-    allTasks.forEach(function (task) {
-        console.log(task.task);
-        console.log(task.done);
-        
-        var queryString = "update todo set task='" + task.task + "', done='" + task.done + "' where id = " + task.id;
-        var query = client.query(queryString);
+    try{
+        allTasks.forEach(function (task) {
+            console.log(task.task);
+            console.log(task.done);
 
-        query.on('error', function (err) {
-            console.log(err);
-            response.sendStatus(400);
+            var queryString = "update todo set task='" + task.task + "', done='" + task.done + "' where id = " + task.id;
+            var query = client.query(queryString);
+
+            query.on('error', function (err) {
+                console.log(err);
+                throw 400;
+            });
         });
-    });
+    } catch (error) {
+        response.sendStatus(400);
+    }
     
     response.send(200);
 });

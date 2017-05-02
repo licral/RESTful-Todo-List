@@ -99,7 +99,7 @@ app.post('/edit_task', function (request, response) {
 });
 
 app.post('/delete_task', function (request, response) {
-    var queryString = "delete from todo where id=" + request.query.id;
+    var queryString = "delete from todo where id=" + request.body.id;
     var query = client.query(queryString);
 
     query.on('end', function () {

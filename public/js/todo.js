@@ -126,7 +126,11 @@ $(document).ready(function (e) {
                 var taskId = $(this).data('taskId');
                 $.ajax({
                     type: 'POST',
-                    url: 'https://vast-cove-47966.herokuapp.com/delete_task?id=' + taskId,
+                    url: 'https://vast-cove-47966.herokuapp.com/delete_task',
+                    contentType: 'application/json',
+                    data: JSON.stringify({
+                        id: taskId
+                    }),
                     success: function(){
                         deleteTask(taskItem, '#confirm-delete');
                     }

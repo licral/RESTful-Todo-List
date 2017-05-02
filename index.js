@@ -107,19 +107,15 @@ app.post('/delete_task', function (request, response) {
 
 app.post('/update_list', function (request, response) {
     var allTasks = request.body.allTasks;
-    var queryString = "delete from todo";
-    var query = client.query(queryString);
 
-    query.on('end', function () {
-        allTasks.forEach(function (task) {
-            console.log(task.id);
-            client.query("insert into todo (task, done) values ('" + task.task + "', " + task.done + ")");
-        })
-    });
+    allTasks.forEach(function (task) {
+        var queryString = "update todo set task='" + task.task + "', done='" + task.done + "' where id = " + task.id;
+        var query = client.query(queryString);
 
-    query.on('error', function (err) {
-        console.log(err);
-        response.sendStatus(400);
+        query.on('error', function (err) {
+            console.log(err);
+            response.sendStatus(400);
+        });
     });
 });
 

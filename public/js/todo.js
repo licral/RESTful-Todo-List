@@ -16,6 +16,8 @@ $(document).ready(function (e) {
         autoOpen: false,
         buttons: {
             "Add task": function () {
+                var task = $('#task').val();
+                console.log(task);
                 $.ajax({
                     type: 'POST',
                     url: 'https://vast-cove-47966.herokuapp.com/add_task',

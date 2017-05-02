@@ -47,13 +47,12 @@ app.get('/get_all_tasks', function (request, response) {
 });
 
 app.post('/add_task', function (request, response) {
-    console.log(request.body.task);
-    var queryString = "insert into todo (task, done) values ('" + request.query.task + "', false)";
+    var queryString = "insert into todo (task, done) values ('" + request.body.task + "', false)";
     var query = client.query(queryString);
 
     query.on('end', function () {
         console.log("Task has been added");
-        addTask(request.query.task, response);
+        addTask(request.body.task, response);
     });
 
     query.on('error', function (err) {

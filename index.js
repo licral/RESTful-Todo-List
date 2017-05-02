@@ -115,6 +115,7 @@ app.post('/delete_task', function (request, response) {
 
 app.post('/update_list', function (request, response) {
     var allTasks = request.body.allTasks;
+    var BreakException = {};
     if(allTasks == undefined){
         response.sendStatus(400);
     }
@@ -129,7 +130,7 @@ app.post('/update_list', function (request, response) {
 
             query.on('error', function (err) {
                 console.log(err);
-                throw 400;
+                throw BreakException;
             });
         });
         response.sendStatus(200);

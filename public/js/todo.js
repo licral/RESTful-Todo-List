@@ -41,7 +41,7 @@ $(document).ready(function (e) {
         var task = $taskItem.attr('id');
 
         $.ajax({
-            type: 'POST',
+            type: 'PUT',
             url: 'https://vast-cove-47966.herokuapp.com/complete_task',
             contentType: 'application/json',
             data: JSON.stringify({

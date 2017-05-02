@@ -65,7 +65,7 @@ app.post('/add_task', function (request, response) {
     });
 });
 
-app.post('/complete_task', function (request, response) {
+app.put('/complete_task', function (request, response) {
     var queryString = "update todo set done = true where id = " + request.body.id;
     var query = client.query(queryString);
 

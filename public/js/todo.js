@@ -140,7 +140,7 @@ $(document).ready(function (e) {
 
     function deleteTask(taskItem, id){
         $(taskItem).parent('li').effect('puff', function () {
-            $(taskItem).remove();
+            $(taskItem).parent('li').remove();
         });
         $(id).dialog('close');
     }

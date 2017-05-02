@@ -21,6 +21,7 @@ $(document).ready(function (e) {
                     type: 'POST',
                     url: 'https://vast-cove-47966.herokuapp.com/add_task',
                     dataType: 'html',
+                    contentType: 'application/json',
                     data: JSON.stringify({
                         task: $('#task').val()
                     }),

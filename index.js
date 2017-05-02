@@ -120,10 +120,6 @@ app.post('/update_list', function (request, response) {
     }
 
     for(var i = 0; i < allTasks.length; i++){
-        if(error){
-            break;
-        }
-        
         var task = allTasks[i];
         var queryString = "update todo set task='" + task.task + "', done='" + task.done + "' where id = " + task.id;
         var query = client.query(queryString);

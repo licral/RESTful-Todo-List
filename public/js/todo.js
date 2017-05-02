@@ -42,7 +42,11 @@ $(document).ready(function (e) {
 
         $.ajax({
             type: 'POST',
-            url: 'https://vast-cove-47966.herokuapp.com/complete_task?id=' + task,
+            url: 'https://vast-cove-47966.herokuapp.com/complete_task',
+            contentType: 'application/json',
+            data: JSON.stringify({
+                id: task
+            }),
             success: function(){
                 $taskItem.slideUp(250, function () {
                     var $this = $(this);

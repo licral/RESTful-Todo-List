@@ -80,6 +80,10 @@ app.post('/complete_task', function (request, response) {
 });
 
 app.post('/edit_task', function (request, response) {
+    if(request.body.task == undefined){
+        response.sendStatus(400);
+    }
+    
     var queryString = "update todo set task='" + request.body.task + "' where id = " + request.body.id;
     var query = client.query(queryString);
 

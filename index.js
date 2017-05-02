@@ -132,7 +132,7 @@ app.post('/update_list', function (request, response) {
                 throw 400;
             });
         });
-        response.send(200);
+        response.sendStatus(200);
     } catch(error) {
         response.sendStatus(400);
     }

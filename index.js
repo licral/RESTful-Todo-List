@@ -129,7 +129,7 @@ app.post('/update_list', function (request, response) {
         query.on('error', function (err) {
             console.log(err);
             response.sendStatus(400);
-            return;
+            next();
         });
     });
     

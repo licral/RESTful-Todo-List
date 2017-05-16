@@ -113,8 +113,8 @@ app.delete('/delete_task/:id', function (request, response) {
     });
 });
 
-app.put('/update_list/:allTasks', function (request, response) {
-    var allTasks = request.params.allTasks;
+app.put('/update_list', function (request, response) {
+    var allTasks = request.body.allTasks;
     if(allTasks == undefined){
         response.sendStatus(400);
     }

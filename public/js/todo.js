@@ -190,8 +190,11 @@ $(document).ready(function (e) {
         });
         $.ajax({
             type: 'PUT',
-            url: 'https://vast-cove-47966.herokuapp.com/update_list/' + allTasks,
+            url: 'https://vast-cove-47966.herokuapp.com/update_list',
             contentType: 'application/json',
+            data: JSON.stringify({
+                allTasks: allTasks
+            })
         });
     }
     

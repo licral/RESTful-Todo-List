@@ -47,16 +47,16 @@ app.get('/get_all_tasks', function (request, response) {
 });
 
 app.post('/add_task', function (request, response) {
-    if(request.body.task == undefined){
+    if(request.query.task == undefined){
         response.sendStatus(400);
     }
     
-    var queryString = "insert into todo (task, done) values ('" + request.body.task + "', false)";
+    var queryString = "insert into todo (task, done) values ('" + request.query.task + "', false)";
     var query = client.query(queryString);
 
     query.on('end', function () {
         console.log("Task has been added");
-        addTask(request.body.task, response);
+        addTask(request.query.task, response);
     });
 
     query.on('error', function (err) {

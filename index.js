@@ -46,17 +46,17 @@ app.get('/get_all_tasks', function (request, response) {
     })
 });
 
-app.post('/add_task', function (request, response) {
-    if(request.body.task == undefined){
+app.post('/add_task/:task', function (request, response) {
+    if(request.params.task == undefined){
         response.sendStatus(400);
     }
     
-    var queryString = "insert into todo (task, done) values ('" + request.body.task + "', false)";
+    var queryString = "insert into todo (task, done) values ('" + request.params.task + "', false)";
     var query = client.query(queryString);
 
     query.on('end', function () {
         console.log("Task has been added");
-        addTask(request.body.task, response);
+        addTask(request.params.task, response);
     });
 
     query.on('error', function (err) {
@@ -65,8 +65,8 @@ app.post('/add_task', function (request, response) {
     });
 });
 
-app.put('/complete_task', function (request, response) {
-    var queryString = "update todo set done = true where id = " + request.body.id;
+app.put('/complete_task/:id', function (request, response) {
+    var queryString = "update todo set done = true where id = " + request.params.id;
     var query = client.query(queryString);
 
     query.on('end', function () {
@@ -79,12 +79,12 @@ app.put('/complete_task', function (request, response) {
     });
 });
 
-app.put('/edit_task', function (request, response) {
-    if(request.body.task == undefined){
+app.put('/edit_task/:task/:id', function (request, response) {
+    if(request.params.task == undefined){
         response.sendStatus(400);
     }
     
-    var queryString = "update todo set task='" + request.body.task + "' where id = " + request.body.id;
+    var queryString = "update todo set task='" + request.params.task + "' where id = " + request.params.id;
     var query = client.query(queryString);
 
     query.on('end', function () {
@@ -98,8 +98,8 @@ app.put('/edit_task', function (request, response) {
     });
 });
 
-app.delete('/delete_task', function (request, response) {
-    var queryString = "delete from todo where id=" + request.body.id;
+app.delete('/delete_task/:id', function (request, response) {
+    var queryString = "delete from todo where id=" + request.params.id;
     var query = client.query(queryString);
 
     query.on('end', function () {
@@ -113,8 +113,8 @@ app.delete('/delete_task', function (request, response) {
     });
 });
 
-app.put('/update_list', function (request, response) {
-    var allTasks = request.body.allTasks;
+app.put('/update_list/:allTasks', function (request, response) {
+    var allTasks = request.params.allTasks;
     if(allTasks == undefined){
         response.sendStatus(400);
     }

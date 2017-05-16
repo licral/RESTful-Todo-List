@@ -18,12 +18,9 @@ $(document).ready(function (e) {
             "Add task": function () {
                 $.ajax({
                     type: 'POST',
-                    url: 'https://vast-cove-47966.herokuapp.com/add_task',
+                    url: 'https://vast-cove-47966.herokuapp.com/add_task/' + $('#task').val(),
                     dataType: 'html',
                     contentType: 'application/json',
-                    data: JSON.stringify({
-                        task: $('#task').val()
-                    }),
                     success: function(data){
                         addTask(data, '#new-todo');
                         updateList();
@@ -42,11 +39,8 @@ $(document).ready(function (e) {
 
         $.ajax({
             type: 'PUT',
-            url: 'https://vast-cove-47966.herokuapp.com/complete_task',
+            url: 'https://vast-cove-47966.herokuapp.com/complete_task/' + task,
             contentType: 'application/json',
-            data: JSON.stringify({
-                id: task
-            }),
             success: function(){
                 $taskItem.slideUp(250, function () {
                     var $this = $(this);
@@ -80,12 +74,8 @@ $(document).ready(function (e) {
                 
                 $.ajax({
                     type: 'PUT',
-                    url: 'https://vast-cove-47966.herokuapp.com/edit_task',
+                    url: 'https://vast-cove-47966.herokuapp.com/edit_task/' + newItem + '/' + taskId,
                     contentType: 'application/json',
-                    data: JSON.stringify({
-                        id: taskId,
-                        task: newItem
-                    }),
                     success: function(){
                         editTask(taskItem, newItem, '#edit-todo');
                         updateList();
@@ -126,11 +116,8 @@ $(document).ready(function (e) {
                 var taskId = $(this).data('taskId');
                 $.ajax({
                     type: 'DELETE',
-                    url: 'https://vast-cove-47966.herokuapp.com/delete_task',
+                    url: 'https://vast-cove-47966.herokuapp.com/delete_task/' + taskId,
                     contentType: 'application/json',
-                    data: JSON.stringify({
-                        id: taskId
-                    }),
                     success: function(){
                         deleteTask(taskItem, '#confirm-delete');
                     }
@@ -203,11 +190,8 @@ $(document).ready(function (e) {
         });
         $.ajax({
             type: 'PUT',
-            url: 'https://vast-cove-47966.herokuapp.com/update_list',
+            url: 'https://vast-cove-47966.herokuapp.com/update_list/' + allTasks,
             contentType: 'application/json',
-            data: JSON.stringify({
-                allTasks: allTasks
-            })
         });
     }
     
